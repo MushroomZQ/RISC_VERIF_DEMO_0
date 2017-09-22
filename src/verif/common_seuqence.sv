@@ -18,3 +18,24 @@ class clk_gen_sequence extends uvm_sequence#(clk_gen_transaction);
 endclass: clk_gen_sequence
 
 typedef uvm_sequencer#(clk_gen_transaction) clk_gen_sequencer;
+
+class register_sequence extends uvm_sequence#(register_transaction);
+    `uvm_object_utils(register_sequence)
+
+    function new(string name = "")
+        super.new(name);
+    endfunction: new
+
+    task body();
+        reigster_transaction reg_trans;
+
+        repeat(100) begin
+            reg_trans= register_transaction::type_id::create(.name("reg_trans"), .contxt(get_full_name()));
+            start_item(reg_trans);
+            assert(reg_trans.randomize());
+            finish_item(reg_trans);
+        end
+    endtask: body
+endclass: register_sequence
+
+typedef uvm_sequencer#(register_transaction) register_sequencer;
