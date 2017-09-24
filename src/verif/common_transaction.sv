@@ -25,6 +25,8 @@ class register_transaction extends uvm_sequence_item;
 
     bit[15:0] opc_iraddr;
 
+    trans_type trans_type;
+
     function new(string name = "")
         super.new(name);
     endfunction: new
@@ -35,3 +37,8 @@ class register_transaction extends uvm_sequence_item;
         `uvm_field_int(opc_iraddr, UVM_ALL_ON)
     `uvm_object_utils_end
 endclass: register_transaction
+
+typedef enum{
+    INPUT_TRANS,
+    OUTPUT_TRANS,
+} trans_type;

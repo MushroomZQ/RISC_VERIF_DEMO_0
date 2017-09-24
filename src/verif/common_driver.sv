@@ -33,6 +33,8 @@ class register_driver extends uvm_driver#(register_transaction);
 
     virtual register_if reg_vif;
 
+    uvm_analysis_port#(register_transaction) drv_mon_ap;
+
     function new(string name, uvm_component parent)
         super.new(name, parent);
     endfunction: new
@@ -55,8 +57,10 @@ class register_driver extends uvm_driver#(register_transaction);
                 seq_item_port.get_next_item(reg_trans);
                 reg_vif.ena <= reg_trans.ena;
                 reg_vif.data <= reg_trans.data;
+                reg_trans.trans_type <= INPUT_TRANS;
                 seq_item_port.item_done();
+                drv_mon_ap.write(reg_trans);
             end
         end
     endtask: drive
-endclass: clk_gen_driver
+endclass: register_driver
