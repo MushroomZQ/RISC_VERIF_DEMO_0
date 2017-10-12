@@ -1,0 +1,17 @@
+./src/rtl/clk_gen.v  
+./src/rtl/register.v
+./src/verif/common_agent.sv   
+./src/verif/common_if.sv       
+./src/verif/common_predictor.sv   
+./src/verif/common_sqr.sv       
+./src/verif/common_transaction.sv
+./src/verif/common_driver.sv  
+./src/verif/common_monitor.sv  
+./src/verif/common_scoreboard.sv  
+./src/verif/common_tb.sv       
+./src/verif/top_tb.sv
+./src/verif/common_env.sv     
+./src/verif/common_pkg.sv      
+./src/verif/common_seq.sv         
+./src/verif/common_testcase.sv
+
