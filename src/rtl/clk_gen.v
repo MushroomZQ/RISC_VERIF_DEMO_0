@@ -13,7 +13,7 @@ module clk_gen(clk, reset, clk1, clk2, clk4, fetch, alu_clk);
     reg clk2;
     reg clk4;
     reg fetch;
-    reg alt_clk;
+    reg alu_clk;
 
     reg [7:0] state;
 
