@@ -21,10 +21,10 @@ module top_tb;
 	wire clk1;
 	wire [7:0] data;
 
-    register_if reg_input_if(.clk(clk1), 
+    register_input_if reg_input_if(.clk(clk1), 
 							.rst(reset)
 							);
-    register_if reg_output_if(.clk(clk1), 
+    register_output_if reg_output_if(.clk(clk1), 
 							.rst(reset)
 							);
 
@@ -39,9 +39,10 @@ module top_tb;
 
 	register register_imp(.clk1(clk1),
 						  .rst(reset),
-						  .ena(reg_input_if.ena),
+						  .ena(reg_input_if.valid),
 						  .data(reg_input_if.data),
-						  .opc_iraddr(reg_output_if.opc_iraddr)
+						  .opc_iraddr(reg_output_if.opc_iraddr),
+                          .valid(reg_output_if.valid)
 						);
 
     initial begin
@@ -50,8 +51,8 @@ module top_tb;
     end
 
     initial begin
-        uvm_config_db#(virtual register_if)::set(uvm_root::get(), "", "reg_input_if", reg_input_if);
-        uvm_config_db#(virtual register_if)::set(uvm_root::get(), "", "reg_output_if", reg_output_if);
+        uvm_config_db#(virtual register_input_if)::set(uvm_root::get(), "", "reg_input_if", reg_input_if);
+        uvm_config_db#(virtual register_output_if)::set(uvm_root::get(), "", "reg_output_if", reg_output_if);
     end
 
     initial begin
@@ -59,10 +60,10 @@ module top_tb;
     end
 
     //assign reg_input_if.clk = clk1;
-    assign reg_input_if.rst = reset;
+    //assign reg_input_if.rst = reset;
 
     //assign reg_output_if.clk = clk1;
-    assign reg_output_if.rst = reset;
+    //assign reg_output_if.rst = reset;
 
     initial begin
         clk <= 1'b0;

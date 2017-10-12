@@ -1,9 +1,10 @@
-module register(input       ena,
+module register(input       ena,//input valid
                 input       clk1,
                 input       rst,
                 input [7:0] data,
                 output[15:0] opc_iraddr,
-				output valid);
+				output      valid//output valid
+                );
 
     reg [15:0]  opc_iraddr;
     reg         state;
@@ -36,7 +37,7 @@ module register(input       ena,
                 endcase
             end
             else begin
-                state <= 1'b0;
+                //state <= 1'b0;
 				valid <= 1'b0;
             end
         end

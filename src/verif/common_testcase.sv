@@ -19,9 +19,9 @@ class register_testcase extends uvm_test;
         reg_seq = register_first_seq::type_id::create("reg_seq", this);
 
         phase.raise_objection(this);
-        //for(int i=0; i<25; i++) begin
+        for(int i=0; i<25; i++) begin
             reg_seq.start(tb.env.reg_agt.reg_sqr);
-        //end
+        end
         phase.drop_objection(this);
     endtask
 
