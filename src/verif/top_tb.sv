@@ -1,11 +1,12 @@
 `timescale 1ns/1ps
 
-`include "common_pkg.sv"
+`include "../testcase/testcase_pkg.sv"
 `include "../rtl/register.v"
 `include "../rtl/clk_gen.v"
 
 module top_tb;
-    import common_exe_pkg::*;
+    import register_uvm_env_pkg::*;
+    import testcase_pkg::*;
 
     reg clk;
     reg reset;
