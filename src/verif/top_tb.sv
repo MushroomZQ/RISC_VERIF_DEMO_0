@@ -3,6 +3,7 @@
 `include "../testcase/testcase_pkg.sv"
 `include "../rtl/register.v"
 `include "../rtl/clk_gen.v"
+`include "../rtl/accum.v"
 
 module top_tb;
     import register_uvm_env_pkg::*;
@@ -29,6 +30,13 @@ module top_tb;
 							.rst(reset)
 							);
 
+    accum_if acc_input_if(.clk(clk1), 
+							.rst(reset)
+							);
+    accum_if acc_output_if(.clk(clk1), 
+							.rst(reset)
+							);
+
 	clk_gen clk_gen_imp(.clk(clk),
 						.reset(reset),
 						.clk1(clk1),
@@ -46,6 +54,14 @@ module top_tb;
                           .valid(reg_output_if.valid)
 						);
 
+    accum accum_imp(.clk1(clk1),
+                    .rst(reset),
+                    .ena(acc_input_if.valid),
+                    .data(acc_input_if.data),
+                    .valid(acc_output_if.valid),
+                    .accum(acc_output_if.data)
+                    );
+
     initial begin
         $fsdbDumpfile("./test.fsdb");
         $fsdbDumpvars(0, top_tb);
@@ -54,6 +70,8 @@ module top_tb;
     initial begin
         uvm_config_db#(virtual register_input_if)::set(uvm_root::get(), "", "reg_input_if", reg_input_if);
         uvm_config_db#(virtual register_output_if)::set(uvm_root::get(), "", "reg_output_if", reg_output_if);
+        uvm_config_db#(virtual accum_if)::set(uvm_root::get(), "", "acc_input_if", acc_input_if);
+        uvm_config_db#(virtual accum_if)::set(uvm_root::get(), "", "acc_output_if", acc_output_if);
     end
 
     initial begin

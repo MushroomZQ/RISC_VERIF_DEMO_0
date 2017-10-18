@@ -1,5 +1,6 @@
 ./src/rtl/clk_gen.v  
 ./src/rtl/register.v
+./src/rtl/accum.v
 ./src/verif/register_uvm_env/register_agent.sv   
 ./src/verif/register_uvm_env/register_if.sv       
 ./src/verif/register_uvm_env/register_predictor.sv   
@@ -9,10 +10,25 @@
 ./src/verif/register_uvm_env/register_monitor.sv  
 ./src/verif/register_uvm_env/register_scoreboard.sv  
 ./src/verif/register_uvm_env/register_tb.sv       
-./src/verif/top_tb.sv
 ./src/verif/register_uvm_env/register_env.sv     
 ./src/verif/register_uvm_env/register_pkg.sv      
-./src/verif/register_uvm_env/register_seq.sv         
+./src/verif/register_uvm_env/register_seq.sv
+
+./src/verif/accum_uvm_env/accum_agent.sv   
+./src/verif/accum_uvm_env/accum_if.sv       
+./src/verif/accum_uvm_env/accum_predictor.sv   
+./src/verif/accum_uvm_env/accum_sqr.sv       
+./src/verif/accum_uvm_env/accum_transaction.sv
+./src/verif/accum_uvm_env/accum_driver.sv  
+./src/verif/accum_uvm_env/accum_monitor.sv  
+./src/verif/accum_uvm_env/accum_scoreboard.sv  
+./src/verif/accum_uvm_env/accum_tb.sv       
+./src/verif/accum_uvm_env/accum_env.sv     
+./src/verif/accum_uvm_env/accum_pkg.sv      
+./src/verif/accum_uvm_env/accum_seq.sv
+
 ./src/testcase/register_testcase.sv
+./src/testcase/accum_testcase.sv
 ./src/testcase/testcase_pkg.sv
+./src/verif/top_tb.sv
 

@@ -1,7 +1,7 @@
 UVM_HOME = /tool/cbar/apps/vcs-mx/2015.09-SP2-10/etc/uvm-1.2
 VERDI_HOME = /tool/cbar/apps/verdi/2015.09-SP2-10
 UVM_VERBOSITY = UVM_LOW
-TEST = register_testcase
+TEST_NAME = $(TEST)
 
 #VCS =	vcs -sverilog -timescale=1ns/1ns \
 #+acc +vpi -PP \
@@ -20,7 +20,7 @@ VCS =	vcs -sverilog -timescale=1ns/1ns \
 	-CFLAGS -DVCS -debug_all -P ${VERDI_HOME}/share/PLI/VCS/linux/novas.tab ${VERDI_HOME}/share/PLI/VCS/linux/pli.a
 
 SIMV = ./simv +UVM_VERBOSITY=$(UVM_VERBOSITY) \
-	+UVM_TESTNAME=$(TEST) +UVM_TR_RECORD +UVM_LOG_RECORD \
+	+UVM_TESTNAME=$(TEST_NAME) +UVM_TR_RECORD +UVM_LOG_RECORD \
 	+verbose=1 -l vcs.log
 
 x:	comp run 
