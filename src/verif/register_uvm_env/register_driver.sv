@@ -36,8 +36,8 @@ class register_driver extends uvm_driver#(register_transaction_in);
                 `uvm_info("register_driver", "get data from seq", UVM_LOW);
                 reg_input_if.data <= req.data;
                 reg_input_if.valid <= req.ena;
-                @(posedge reg_input_if.clk);
-                reg_input_if.valid <= 1'b0;
+                //repeat(2)@(posedge reg_input_if.clk);
+                //reg_input_if.valid <= 1'b0;
             seq_item_port.item_done();
         end
     endtask: get_and_drive

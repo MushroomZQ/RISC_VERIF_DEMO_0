@@ -50,15 +50,15 @@ module top_tb;
 						  .rst(reset),
 						  .ena(reg_input_if.valid),
 						  .data(reg_input_if.data),
-						  .opc_iraddr(reg_output_if.opc_iraddr),
-                          .valid(reg_output_if.valid)
+						  .opc_iraddr(reg_output_if.opc_iraddr)
+                          //.valid(reg_output_if.valid)
 						);
 
     accum accum_imp(.clk1(clk1),
                     .rst(reset),
                     .ena(acc_input_if.valid),
                     .data(acc_input_if.data),
-                    .valid(acc_output_if.valid),
+                    //.valid(acc_output_if.valid),
                     .accum(acc_output_if.data)
                     );
 

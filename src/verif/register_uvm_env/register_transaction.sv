@@ -16,17 +16,17 @@ endclass: register_transaction_in
 class register_transaction_out extends uvm_sequence_item;
 
 	bit [15:0] opc_iraddr;
-    bit valid;
+    //bit valid;
 
     `uvm_object_utils_begin(register_transaction_out)
         `uvm_field_int(opc_iraddr, UVM_ALL_ON)
-        `uvm_field_int(valid, UVM_ALL_ON)
+        //`uvm_field_int(valid, UVM_ALL_ON)
     `uvm_object_utils_end
 
     function new(string name = "register_transaction_out");
         super.new(name);
 		opc_iraddr = 16'bxxxxxxxxxxxxxxxx;
-        valid = 0;
+        //valid = 0;
     endfunction
 
 endclass: register_transaction_out

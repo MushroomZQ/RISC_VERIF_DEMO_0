@@ -31,12 +31,12 @@ class register_predictor extends uvm_component;
 		if(_trans.ena) begin
 			if(state == 1'b0) begin
 				output_reg_trans.opc_iraddr[15:8] = _trans.data;
-                output_reg_trans.valid = _trans.ena;
+                //output_reg_trans.valid = _trans.ena;
                 state = 1'b1;
 			end
 			else if(state == 1'b1) begin
 				output_reg_trans.opc_iraddr[7:0] = _trans.data;
-                output_reg_trans.valid = _trans.ena;
+                //output_reg_trans.valid = _trans.ena;
                 state = 1'b0;
 			end
 			else begin

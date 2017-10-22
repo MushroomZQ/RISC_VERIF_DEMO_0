@@ -3,6 +3,8 @@ class register_monitor extends uvm_monitor;
     virtual register_output_if reg_output_if;
     virtual register_input_if reg_input_if;
 
+    event trans_income;
+
     uvm_analysis_port#(register_transaction_in) mon_pred_ap;
     uvm_analysis_port#(register_transaction_out) mon_scbd_ap;
 
@@ -38,13 +40,15 @@ class register_monitor extends uvm_monitor;
             if(reg_input_if.rst) begin
                 @(negedge reg_input_if.rst);
             end
-            @(posedge reg_input_if.valid);
-            //if (reg_input_if.valid) begin
+            @(posedge reg_input_if.clk);
+            if (reg_input_if.valid) begin
 			    reg_trans.ena = reg_input_if.valid;
                 reg_trans.data = reg_input_if.data;
 
                 mon_pred_ap.write(reg_trans);
-            //end
+            ->trans_income;
+            end
+            //->trans_income;
         end
     endtask
 
@@ -53,17 +57,18 @@ class register_monitor extends uvm_monitor;
         register_transaction_out reg_trans;
 
         forever begin
+            @trans_income;
             reg_trans = new();
             if(reg_output_if.rst) begin
                 @(negedge reg_output_if.rst);
             end
-            @(posedge reg_output_if.clk);
-			if(reg_output_if.valid) begin
+            repeat(2)@(posedge reg_output_if.clk);
+			//if(reg_output_if.valid) begin
 				reg_trans.opc_iraddr = reg_output_if.opc_iraddr;
-				reg_trans.valid = reg_output_if.valid;
+				//reg_trans.valid = reg_output_if.valid;
 
 				mon_scbd_ap.write(reg_trans);
-			end
+			//end
         end
     endtask
 endclass: register_monitor

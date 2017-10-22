@@ -2,7 +2,7 @@ module register(input       ena,//input valid
                 input       clk1,
                 input       rst,
                 input [7:0] data,
-                output[15:0] opc_iraddr,
+                output[15:0] opc_iraddr
 				//output      valid//output valid
                 );
 

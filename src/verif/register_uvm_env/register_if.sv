@@ -7,5 +7,5 @@ endinterface
 interface register_output_if(input clk,
             input rst);
 	logic [15:0] opc_iraddr;
-	logic valid;
+	//logic valid;
 endinterface
