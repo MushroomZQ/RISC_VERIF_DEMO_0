@@ -4,7 +4,7 @@ class top_rom_ram_in extends uvm_sequence_item;
 
     `uvm_object_utils_begin(top_rom_ram_in)
         `uvm_field_int(data, UVM_ALL_ON)
-        `uvm_field_int(source, UVM_ALL_ON | UVM_NO_COMPARE)
+        `uvm_field_int(source, UVM_ALL_ON | UVM_NOCOMPARE)
     `uvm_object_utils_end
 
     function new(string name = "top_rom_ram_in");

@@ -87,7 +87,7 @@ module risc_lit_top(clk,
                 .zero(zero)
                 );
 
-    machinect1 m_machinec1( .ena(contr_ena),
+    machinectl m_machinecl( .ena(contr_ena),
                             .fetch(fetch),
                             .rst(reset)
                             );

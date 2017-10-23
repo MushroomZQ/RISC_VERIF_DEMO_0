@@ -23,6 +23,7 @@ class top_monitor extends uvm_monitor;
     endfunction
 
     task run_phase(uvm_phase phase);
+        @(posedge input_risc_top_if.rst);
         fork
             collect_input_trans();
             collect_output_trans();
@@ -38,7 +39,7 @@ class top_monitor extends uvm_monitor;
             if(input_risc_top_if.rst) begin
                 @(negedge input_risc_top_if.rst);
             end
-            @(posedge reg_input_if.clk);
+            @(posedge input_risc_top_if.clk);
             //if (reg_input_if.valid) begin
                 if(input_risc_top_if.rom_in) begin
 			        top_trans.data = input_risc_top_if.rom_in;

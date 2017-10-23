@@ -8,7 +8,7 @@ module top_tb;
     import testcase_pkg::*;
 
     reg reset;
-    reg clock;
+    reg clk;
     reg [(3*8):0] mnemonic; //array that holds 3 8-bit ASCII characters
     reg [12:0] PC_addr;
     reg [12:0] IR_addr;
@@ -16,15 +16,15 @@ module top_tb;
     wire [12:0] addr;
     wire rd,wr,halt,ram_sel,rom_sel;
 
-    risc_top_if input_risc_top_if(.clk(clock),
+    risc_top_if input_risc_top_if(.clk(clk),
                             .rst(reset)
                             );
 
-    risc_top_if output_risc_top_if(.clk(clock),
+    risc_top_if output_risc_top_if(.clk(clk),
                             .rst(reset)
                             );
 
-    cpu t_cpu ( .clk(clock),
+    risc_lit_top t_cpu ( .clk(clk),
                 .reset(reset),
                 .halt(output_risc_top_if.halt),
                 .rd(output_risc_top_if.rd),
@@ -35,7 +35,7 @@ module top_tb;
                 .ram_out(output_risc_top_if.ram_out)
                 );
 
-    ram t_ram ( .addr(addr[9:0]),
+    /*ram t_ram ( .addr(addr[9:0]),
                 .read(rd),
                 .write(wr),
                 .ena(ram_sel),
@@ -51,7 +51,7 @@ module top_tb;
     addr_decode t_addr_decode ( .addr(addr),
                                 .ram_sel(ram_sel),
                                 .rom_sel(rom_sel)
-                                );
+                                );*/
 
     initial begin
         $fsdbDumpfile("./test.fsdb");
@@ -59,10 +59,8 @@ module top_tb;
     end
 
     initial begin
-        uvm_config_db#(virtual register_input_if)::set(uvm_root::get(), "", "reg_input_if", reg_input_if);
-        uvm_config_db#(virtual register_output_if)::set(uvm_root::get(), "", "reg_output_if", reg_output_if);
-        uvm_config_db#(virtual accum_if)::set(uvm_root::get(), "", "acc_input_if", acc_input_if);
-        uvm_config_db#(virtual accum_if)::set(uvm_root::get(), "", "acc_output_if", acc_output_if);
+        uvm_config_db#(virtual risc_top_if)::set(uvm_root::get(), "", "input_risc_top_if", input_risc_top_if);
+        uvm_config_db#(virtual risc_top_if)::set(uvm_root::get(), "", "output_risc_top_if", output_risc_top_if);
     end
 
     initial begin

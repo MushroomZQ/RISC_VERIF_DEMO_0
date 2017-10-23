@@ -1,17 +1,17 @@
 class top_scoreboard extends uvm_scoreboard;
-    top_transaction_out pred_queue[$];
-    top_transaction_out real_trans;
-    top_transaction_out ref_trans;
+    top_risc_out pred_queue[$];
+    top_risc_out real_trans;
+    top_risc_out ref_trans;
 
     int match;
 
     //my_monitor(output_monitor)->my_scoreboard
     `uvm_analysis_imp_decl (_mon_scbd)
-    uvm_analysis_imp_mon_scbd#(top_transaction_out, top_scoreboard) mon_scbd_imp;
+    uvm_analysis_imp_mon_scbd#(top_risc_out, top_scoreboard) mon_scbd_imp;
 
 	//my_predictor->my_scoreboard
 	`uvm_analysis_imp_decl (_pred_scbd)
-	uvm_analysis_imp_pred_scbd#(top_transaction_out, top_scoreboard) pred_scbd_imp;
+	uvm_analysis_imp_pred_scbd#(top_risc_out, top_scoreboard) pred_scbd_imp;
 
     `uvm_component_utils(top_scoreboard)
 
@@ -26,12 +26,12 @@ class top_scoreboard extends uvm_scoreboard;
         super.build_phase(phase);
     endfunction
 
-    function void write_pred_scbd(top_transaction_out _trans);
+    function void write_pred_scbd(top_risc_out _trans);
         `uvm_info(get_type_name(), $psprintf("\npush back predictor transaction: \n%s", _trans.sprint()), UVM_LOW);
         pred_queue.push_back(_trans);
     endfunction
 
-    function void write_mon_scbd(top_transaction_out _trans);
+    function void write_mon_scbd(top_risc_out _trans);
         real_trans = new();
         ref_trans = new();
 		`uvm_info(get_type_name(), "into compare", UVM_LOW);

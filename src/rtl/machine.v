@@ -26,7 +26,7 @@ module machine( inc_pc,
     input [2:0] opcode;
 
     reg inc_pc;
-    reg load_acc
+    reg load_acc;
     reg load_pc;
     reg rd;
     reg wr;

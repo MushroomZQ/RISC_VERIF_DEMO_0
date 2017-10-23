@@ -5,7 +5,7 @@ module counter (pc_addr,
                 rst
                 );
 
-    input [12:0] pc_addr;
+    input [12:0] ir_addr;
     input        load;
     input        clock;
     input        rst;

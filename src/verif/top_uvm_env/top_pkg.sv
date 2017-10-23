@@ -12,7 +12,7 @@ package top_uvm_env_pkg;
     `include "./src/verif/top_uvm_env/top_predictor.sv"
     `include "./src/verif/top_uvm_env/top_agent.sv"
     `include "./src/verif/top_uvm_env/top_env.sv"
-    `include "./src/verif/top_uvm_env/top_tb.sv"
+    `include "./src/verif/top_uvm_env/top_risc_tb.sv"
     //`include "top_testcase.sv"
 endpackage: top_uvm_env_pkg
 
