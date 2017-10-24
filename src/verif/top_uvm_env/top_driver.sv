@@ -27,7 +27,7 @@ class top_driver extends uvm_driver#(top_rom_ram_in);
 
     virtual task get_and_drive();
         forever begin
-            @(posedge input_risc_top_if.clk);
+            @(negedge input_risc_top_if.clk);
             if(input_risc_top_if.rst) begin
                 @(negedge input_risc_top_if.rst);
                 @(posedge input_risc_top_if.clk);
