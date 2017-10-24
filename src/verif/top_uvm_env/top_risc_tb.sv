@@ -1,6 +1,6 @@
-class top_tb extends uvm_env;
+class top_risc_tb extends uvm_env;
 
-    `uvm_component_utils(top_tb)
+    `uvm_component_utils(top_risc_tb)
 
     top_env env;
 
@@ -13,5 +13,5 @@ class top_tb extends uvm_env;
         env = top_env::type_id::create("env", this);
     endfunction
 
-endclass: top_tb
+endclass: top_risc_tb
 
