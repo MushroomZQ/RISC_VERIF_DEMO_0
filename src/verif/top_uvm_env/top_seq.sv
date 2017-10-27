@@ -1,5 +1,7 @@
 virtual class top_base_seq extends uvm_sequence#(top_rom_ram_in);
 
+    rand bit[7:0] data;
+
     function new(string name = "top_base_seq");
         super.new(name);
     endfunction
@@ -19,7 +21,8 @@ class top_first_rom_seq extends top_base_seq;
     virtual task body();
         `uvm_create(rom_trans);
         `uvm_info(get_type_name(), "randomize data", UVM_LOW);
-        rom_trans.data = $urandom();
+        //rom_trans.data = $urandom();
+        rom_trans.data = data;
         rom_trans.source = 1'b0;
         `uvm_info(get_type_name(), "send data", UVM_LOW);
         `uvm_send(rom_trans);
@@ -46,7 +49,8 @@ class top_first_ram_seq extends top_base_seq;
     virtual task body();
         `uvm_create(ram_trans);
         `uvm_info(get_type_name(), "randomize data", UVM_LOW);
-        ram_trans.data = $urandom();
+        //ram_trans.data = $urandom();
+        ram_trans.data = data;
         ram_trans.source = 1'b1;
         `uvm_info(get_type_name(), "send data", UVM_LOW);
         `uvm_send(ram_trans);
