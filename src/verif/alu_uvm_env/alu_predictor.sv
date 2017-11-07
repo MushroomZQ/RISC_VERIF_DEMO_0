@@ -25,8 +25,19 @@ class alu_predictor extends uvm_component;
 
     function void do_prediction(alu_transaction_in _trans);
         output_trans = new();
-        output_trans = _trans;
+        case(_trans.opcode)
+            3'b000: output_trans.alu_out = _trans.accum;
+            3'b001: output_trans.alu_out = _trans.accum;
+            3'b010: output_trans.alu_out = _trans.accum + _trans.data;
+            3'b011: output_trans.alu_out = _trans.accum & _trans.data;
+            3'b100: output_trans.alu_out = _trans.accum ^ _trans.data;
+            3'b101: output_trans.alu_out = _trans.data;
+            3'b110: output_trans.alu_out = _trans.accum;
+            3'b111: output_trans.alu_out = _trans.accum;
+            default: output_trans.alu_out = 8'bxxxx_xxxx;
+        endcase
+        output_trans.zero = !_trans.accum;
         pred_scbd_ap.write(output_trans);
     endfunction
 
-endclass: accum_predictor
+endclass: alu_predictor
